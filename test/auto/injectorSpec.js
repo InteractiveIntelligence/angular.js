@@ -1036,4 +1036,17 @@ describe('strict-di injector', function() {
     inject(function($test) {});
     expect(called).toBe(true);
   });
+
+  it('should not throw if magic annotation is used by factory and using a native constructor', function() {
+    module(function($provide) {
+      $provide.factory({
+        '$test': Object
+      });
+    });
+    inject(function($injector) {
+      expect(function() {
+        $injector.invoke(['$test', function(test) {}]);
+      }).not.toThrow();
+    });
+  });
 });
