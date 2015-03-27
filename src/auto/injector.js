@@ -85,11 +85,11 @@ function annotate(fn, strictDi, name) {
       argDecl,
       last;
 
-  if (typeof fn === 'function') {
+  if (isFunction(fn)) {
     if (!($inject = fn.$inject)) {
       $inject = [];
       if (fn.length) {
-        if (strictDi) {
+        if (strictDi && !isNativeCtorFn(fn)) {
           if (!isString(name) || !name) {
             name = fn.name || anonFn(fn);
           }

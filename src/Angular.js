@@ -49,6 +49,7 @@
   isBlob: true,
   isBoolean: true,
   isPromiseLike: true,
+  isNativeCtorFn: true,
   trim: true,
   escapeForRegexp: true,
   isElement: true,
@@ -592,6 +593,19 @@ function isBoolean(value) {
 
 function isPromiseLike(obj) {
   return obj && isFunction(obj.then);
+}
+
+function isNativeCtorFn(obj) {
+  return isFunction(obj) && (
+           obj === Array ||
+           obj === Boolean ||
+           obj === Date ||
+           obj === Function ||
+           obj === Number ||
+           obj === Object ||
+           obj === RegExp ||
+           obj === String
+         );
 }
 
 
